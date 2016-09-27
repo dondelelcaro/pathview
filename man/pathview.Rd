@@ -40,7 +40,7 @@ list(gene = 10, cpd = 10), both.dirs =list(gene = T, cpd = T), low =
 list(gene = "green", cpd = "blue"), mid = list(gene = "gray", cpd =
 "gray"), high = list(gene = "red", cpd = "yellow"), na.col =
 "transparent", new.signature = TRUE, plot.col.key = TRUE, key.align =
-"x", key.pos = "topright", ...)
+"x", key.pos = "topright", write.plot = TRUE, ...)
 
 keggview.graph(plot.data.gene = NULL, plot.data.cpd = NULL, cols.ts.gene
 = NULL, cols.ts.cpd = NULL, node.data, path.graph, pathway.name,
@@ -53,7 +53,7 @@ bins = list(gene = 10, cpd = 10), both.dirs = list(gene = T, cpd = T),
 low = list(gene = "green", cpd = "blue"), mid = list(gene = "gray", cpd
 = "gray"), high = list(gene = "red", cpd = "yellow"), na.col =
 "transparent", new.signature = TRUE, plot.col.key = TRUE, key.align =
-"x", key.pos = "topright", sign.pos = "bottomright", ...)  }
+"x", key.pos = "topright", sign.pos = "bottomright", write.plot=TRUE, ...)  }
 
 \arguments{
   \item{gene.data}{
@@ -340,6 +340,10 @@ default position or node center. This argument is useful when
 map.cpdname=TRUE, i.e. compounds are labelled by full name, which
 affects the look of compound nodes and color. Only effective when
 kegg.native=FALSE. Default cpd.lab.offset=1.0.
+}
+\item {write.plot}{
+logical, if the plot should be written to a file using pdf() or png. If
+false, the plot(s) are written to the current graphical device.
 }
 }
 \details{

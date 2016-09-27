@@ -37,6 +37,7 @@ keggview.graph <-function(
                          key.align="x",
                          key.pos="topright",
                          sign.pos="bottomright",#g
+                         write.plot=TRUE,
                            ...){
   
   gR1=path.graph
@@ -297,7 +298,9 @@ for(np in 1:nplots){
   }
 
   pdf.width=ifelse(same.layer,1.5,1)* pdf.size[1]
-    pdf(gfile, width=pdf.width,height=pdf.size[2])
+  if (write.plot) {
+      pdf(gfile, width=pdf.width,height=pdf.size[2])
+  }
     op <- par(no.readonly = TRUE) # save default, for resetting...
     if(same.layer) nf <- layout(cbind(1,2), c(2,1))#, TRUE)
     rg=renderGraph(gR2.layout)
@@ -358,7 +361,9 @@ for(np in 1:nplots){
 #  kegg.legend(edges.only=same.layer)
   kegg.legend(type=kl.type)
   par(pv.pars$op)
-  dev.off()
+  if (write.plot) {
+      dev.off()
+  }
 }
   
   return(invisible(pv.pars))

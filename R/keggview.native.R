@@ -30,6 +30,7 @@ function(
                          key.align="x",
                          key.pos="topright",
 #                         sign.pos="bottomright",#g
+         write.plot=TRUE,
                          ...){
 
 #read image  
@@ -85,8 +86,9 @@ for(np in 1:nplots){
  img.file =paste(pathway.name,pn.suffix[np],"png", sep=".")
  out.msg=sprintf(out.fmt, img.file)
  message("Info: ", out.msg)
-  png(img.file, width = width, height = height, res=res)
-
+    if (write.plot) {
+        png(img.file, width = width, height = height, res=res)
+    }
   op=par(mar = c(0, 0, 0, 0))
   plot(c(0, width), c(0, height), type = "n", xlab = "", ylab = "",xaxs = "i",yaxs = "i")
   if(new.signature) img[height-4:25, 17:137, 1:3]=1
@@ -140,8 +142,10 @@ if(!is.null(cols.ts.cpd) & nc.cpd>=np){
   }
   
   if(new.signature) pathview.stamp(x=17, y=20, on.kegg=T, cex = pv.pars$sign.cex)
-  par(pv.pars$op)
-  dev.off()
+    par(pv.pars$op)
+  if (write.plot) {
+      dev.off()
+  }
 }
   
   return(invisible(pv.pars))
